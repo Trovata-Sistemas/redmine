@@ -16,9 +16,15 @@ gem "actionpack-xml_parser"
 gem "roadie-rails"
 gem "mimemagic"
 
-# Request at least nokogiri 1.6.7.2 because of security advisories
-gem "nokogiri", ">= 1.6.7.2"
+gem "therubyracer"
 
+#gem "core_ext"
+
+#gem "mysql2"
+#gem "rdoc", ">= 2.4.2"
+# Request at least nokogiri 1.6.7.2 because of security advisories
+#gem "nokogiri", ">= 1.6.7.2"
+gem "nokogiri"
 # Request at least rails-html-sanitizer 1.0.3 because of security advisories 
 gem "rails-html-sanitizer", ">= 1.0.3"
 
@@ -65,6 +71,7 @@ if File.exist?(database_file)
   adapters = database_config.values.map {|c| c['adapter']}.compact.uniq
   if adapters.any?
     adapters.each do |adapter|
+	puts adapter
       case adapter
       when 'mysql2'
         gem "mysql2", "~> 0.3.11", :platforms => [:mri, :mingw, :x64_mingw]
@@ -93,9 +100,11 @@ else
 end
 
 group :development do
-  gem "rdoc", "~> 4.3"
+  #gem "rdoc", "~> 4.3"
   gem "yard"
 end
+
+gem "rdoc", "~> 4.3"
 
 group :test do
   gem "minitest"
